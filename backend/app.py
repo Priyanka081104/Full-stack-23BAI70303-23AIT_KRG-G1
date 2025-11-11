@@ -6,9 +6,7 @@ from werkzeug.security import generate_password_hash, check_password_hash
 # ========================
 # APP CONFIGURATION
 # ========================
-app = Flask(
-    __name__,
-)
+app = Flask(__name__)
 app.secret_key = "your_secret_key"  # Needed for sessions and flash messages
 
 # ========================
@@ -39,13 +37,22 @@ init_db()
 def home():
     return render_template('signin.html')
 
+
+# ------------------------
+# SIGNIN PAGE ROUTES
+# ------------------------
+@app.route('/signin')
+def signin_page():
+    return render_template('signin.html')
+
 @app.route('/signin.html')
 def signin_html_redirect():
     return redirect(url_for('signin_page'))
 
-@app.route('/signin')
-def signin_page():
-    return render_template('signin.html')
+
+# ------------------------
+# SIGNUP PAGE ROUTES
+# ------------------------
 @app.route('/signup')
 def signup_page():
     return render_template('signup.html')
@@ -79,6 +86,7 @@ def register_user():
         flash("⚠️ Email already registered. Please try another one.", "error")
         return redirect(url_for('signup_page'))
 
+
 # ------------------------
 # SIGNIN FUNCTIONALITY
 # ------------------------
@@ -101,6 +109,7 @@ def login_user():
         flash("❌ Invalid email or password. Please try again.", "error")
         return redirect(url_for('signin_page'))
 
+
 # ------------------------
 # DASHBOARD (AFTER LOGIN)
 # ------------------------
@@ -111,6 +120,18 @@ def dashboard():
         return redirect(url_for('signin_page'))
     return render_template('home2.html', name=session['user_name'])
 
+
+# ------------------------
+# SYMPTOM ANALYSIS PAGE
+# ------------------------
+@app.route('/analysis')
+def analysis():
+    if 'user_id' not in session:
+        flash("Please log in first.", "warning")
+        return redirect(url_for('signin_page'))
+    return render_template('analysis.html')
+
+
 # ------------------------
 # LOGOUT
 # ------------------------
@@ -119,6 +140,17 @@ def logout():
     session.clear()
     flash("You have been logged out.", "info")
     return redirect(url_for('signin_page'))
+
+# ------------------------
+# SMART REMINDERS PAGE
+# ------------------------
+@app.route('/reminder')
+def reminder():
+    if 'user_id' not in session:
+        flash("Please log in first.", "warning")
+        return redirect(url_for('signin_page'))
+    return render_template('reminder.html')
+
 
 # ========================
 # RUN APP
