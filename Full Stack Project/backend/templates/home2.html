@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Your Health Companion</title>
+    <link rel="stylesheet" href="../static/css/home2.css">
+</head>
+<body>
+    <!-- Header -->
+    <header>
+        <nav>
+            <div class="logo">🩺 Your Health Companion</div>
+            <ul class="nav-links">
+                <li><a href="#home">Home</a></li>
+                <li><a href="#features">Features</a></li>
+                <li><a href="#contact">Contact Us</a></li>
+            </ul>
+
+            <!-- USER LOGGED IN -->
+            <div class="auth-buttons">
+                <span style="color:white; margin-right:10px;">
+                    👋 Hello, {{ name }}
+                </span>
+                <a href="/logout" class="btn btn-outline">Logout</a>
+            </div>
+        </nav>
+    </header>
+
+    <!-- Hero Section -->
+    <section id="home" class="hero">
+        <div class="hero-container">
+            <div class="hero-content">
+                <h1>Streamlined Health Testing Online</h1>
+                <p>Experience efficient and accurate medical diagnostics online, ensuring timely health insights and personalized care recommendations.</p>
+
+                <!-- Correct Flask Route -->
+                <a href="/analysis" class="cta-button">Analyze Your Symptoms</a>
+            </div>
+
+            <div class="hero-visual">
+                <div class="dashboard-mockup">
+                    <img class="image" src="../static/images/background image.png" alt="Dashboard Mockup">
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Features Section -->
+    <section id="features" class="features">
+        <div class="features-container">
+            <h2>Our Features</h2>
+            <p class="features-subtitle">Discover powerful tools designed to help you monitor, analyze, and improve your health.</p>
+            
+            <div class="features-grid">
+
+                <!-- AI Symptom Analyzer -->
+                <a href="/analysis">
+                    <div class="feature-card">
+                        <div class="feature-icon">🩺</div>
+                        <h3>AI Symptom Analyzer</h3>
+                        <p>Instant health predictions based on your symptoms.</p>
+                    </div>
+                </a>
+
+                <!-- Health Analytics -->
+                <div class="feature-card">
+                    <div class="feature-icon">📊</div>
+                    <h3>Health Analytics</h3>
+                    <p>Track and visualize your health patterns.</p>
+                </div>
+
+                <!-- Smart Reminders (Updated Link ✅) -->
+                <a href="/reminder">
+                    <div class="feature-card">
+                        <div class="feature-icon">🔔</div>
+                        <h3>Smart Reminders</h3>
+                        <p>Never miss your medication schedule again.</p>
+                    </div>
+                </a>
+
+                <!-- Expert Consultation -->
+                <div class="feature-card">
+                    <div class="feature-icon">👨‍⚕️</div>
+                    <h3>Expert Consultation</h3>
+                    <p>Connect with certified doctors from home.</p>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact" class="contact">
+        <div class="contact-container">
+            <h2>Contact Us</h2>
+            <p>Have questions? We're here to help.</p>
+            
+            <div class="contact-form">
+                <div class="form-group">
+                    <input type="text" placeholder="Your Name" required>
+                </div>
+                <div class="form-group">
+                    <input type="email" placeholder="Your Email" required>
+                </div>
+                <div class="form-group">
+                    <textarea rows="5" placeholder="Your Message" required></textarea>
+                </div>
+                <a href="#" class="cta-button">Send Message</a>
+            </div>
+        </div>
+    </section>
+
+    <script>
+        // Scroll animations
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.style.opacity = '1';
+                    entry.target.style.transform = 'translateY(0)';
+                }
+            });
+        }, { threshold: 0.1 });
+
+        document.querySelectorAll('.feature-card').forEach(card => {
+            card.style.opacity = '0';
+            card.style.transform = 'translateY(30px)';
+            card.style.transition = 'all 0.6s ease';
+            observer.observe(card);
+        });
+    </script>
+</body>
+</html>
