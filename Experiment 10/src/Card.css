@@ -1,0 +1,12 @@
+.card{
+    border: 2px solid black;
+    border-radius: 10px;
+    padding: 16px;
+    width: 200px;
+    height: 150px;
+}
+.container{
+    display: inline-flex;
+    padding: 15px;
+    flex-direction: row;
+}

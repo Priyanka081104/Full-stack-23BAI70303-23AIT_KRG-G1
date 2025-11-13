@@ -1,0 +1,12 @@
+.container1{
+    width:100%;
+    background-color: green;
+    position: fixed;
+    top: 0;
+    left: 0;
+}
+.header{
+    text-align: center;
+    margin: 0;
+    padding: 10px;
+}
