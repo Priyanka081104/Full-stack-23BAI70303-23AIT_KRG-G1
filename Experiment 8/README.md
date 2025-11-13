@@ -34,9 +34,10 @@ Notes
 - All transfers use MongoDB transactions (sessions). On insufficient funds or failure, the transaction is aborted and no balance changes persist.
 - This project is educational; for production, add authentication, input validation, rate-limiting, and monitoring.
 
-Viva Questions (covered in README):
+Viva Questions:
 1. What is a transaction? A transaction is a unit of work that is atomic, consistent, isolated, and durable (ACID).
 2. How does MongoDB ensure atomicity? Through multi-document transactions across replica sets that either commit all changes or none.
 3. What happens if the system fails mid-transaction? If not committed, the transaction is aborted; partially-applied changes are rolled back.
 4. What is the role of sessions in MongoDB? Sessions group operations in a transaction and track transactional state.
 5. How to enable transactions in MongoDB? Use a replica set. Single-node replica set is fine for local testing: start `mongod` with `--replSet` and run `rs.initiate()` in the shell.
+
